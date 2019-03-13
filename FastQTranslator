@@ -9,38 +9,40 @@ class Argparse:
 
 	def __init__:
 	#contains ACSII characters 33:73 with values 0:40, and ACSII characters 64:104 with values 0:40
-		self.ASCIIdict = {}  #key = ASCII character, value = ASCII value
+		self.ASCIIdict = {i: chr(i) for i in range(129)}  #key = ASCII character, value = ASCII value
 
 
 	def unknownBases(self):
 	'''Capitalize all bases, and replace all bases within ‘unknown bases’ list with N'''
 		unknownBs = ['*', '.', 'n', 'N']
 		capSeq = self.sequence.upper() # capitalize bases
-		If base in unknown Bs:
-			capSeq.replace('base', 'N')
+		for base in capSeq:
+			if base in unknownBs:
+				capSeq.replace('base', 'N')
 
 	def PHRED33To64(self):
 		qualityString64list = []
-		for ASCIIchar in line4
-			append chr(value of ASCIIchar + 33) to qualityString64list #TODO
-		return string of joined qualityString64list #TODO
-			
+		for ASCIIchar in line4:
+			append chr(ASCIIchar.value + 33) to qualityString64list #TODO
+			qualityString64list.append(chr(ASCIIchar.value + 33))
+		return ''.join(qualityString64list) #TODO
 			
 	def PHRED64To33(self):
 		qualityString33list = []
-		for ASCIIchar in line4
-			append chr(value of ASCIIchar - 31) to qualityString33list #TODO
-		return string of joined qualityString33list #TODO
+		for ASCIIchar in line4:
+			append chr(ASCIIchar.value - 31) to qualityString33list #TODO
+		return ''.join(qualityString33list) 
 
 	def qualityScoreCalc(self):
 		qValue = 0
-		if args P64Bin
-			for ASCIIchar in line4
-				if ASCIIchar == N
+		if args P64Bin:
+			for ASCIIchar in line4:
+				if ASCIIchar == N:
 					value = 2
-				qValue += value of ASCIIchar #TODO
-		for ASCIIchar in line4
-			qValue += value of ASCIIchar #TODO
+					qValue += value
+				qValue += ASCIIchar.value #TODO
+		for ASCIIchar in line4:
+			qValue += ASCIIchar.value #TODO
 
 		qualityScore = value/len(line4)
 
@@ -64,9 +66,6 @@ class Argparse:
 			elif args P64out:
 				print header1\n sequence\n header2\n line4
 			
-
-
-	
 
 class FastQreader: # might have to make this as a new class?
 '''Define objects to read FASTQ files.(Maybe make like FastAreader? So similar steps)'''
