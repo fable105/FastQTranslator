@@ -1,0 +1,105 @@
+#Jonathan Do and Shaina Mae Esquejo
+
+
+import sys # for STDIN
+
+class Argparse:
+	self.parser.add_argument('PHRED33input', action = 'store', help='input file name')
+	 # we will add the different input,output conditions here as arguments
+
+	def __init__:
+	#contains ACSII characters 33:73 with values 0:40, and ACSII characters 64:104 with values 0:40
+		self.ASCIIdict = {}  #key = ASCII character, value = ASCII value
+
+
+	def unknownBases(self):
+	'''Capitalize all bases, and replace all bases within ‘unknown bases’ list with N'''
+		unknownBs = ['*', '.', 'n', 'N']
+		capSeq = self.sequence.upper() # capitalize bases
+		If base in unknown Bs:
+			capSeq.replace('base', 'N')
+
+	def PHRED33To64(self):
+		qualityString64list = []
+		for ASCIIchar in line4
+			append chr(value of ASCIIchar + 33) to qualityString64list #TODO
+		return string of joined qualityString64list #TODO
+			
+			
+	def PHRED64To33(self):
+		qualityString33list = []
+		for ASCIIchar in line4
+			append chr(value of ASCIIchar - 31) to qualityString33list #TODO
+		return string of joined qualityString33list #TODO
+
+	def qualityScoreCalc(self):
+		qValue = 0
+		if args P64Bin
+			for ASCIIchar in line4
+				if ASCIIchar == N
+					value = 2
+				qValue += value of ASCIIchar #TODO
+		for ASCIIchar in line4
+			qValue += value of ASCIIchar #TODO
+
+		qualityScore = value/len(line4)
+
+	def printToFile(self):
+		if args PHRED33input:
+			if args P64out:
+				print(header1\n sequence\n header2\n PHRED33To64() qualityScoreCalc)
+			elif args P64Bin:
+				print header1\n sequence\n header2\n PHRED33To64() qualityScoreCalc
+			elif args P64SOLin:
+				print header1\n sequence\n header2\n PHRED33To64() qualityScoreCalc
+			else:
+				print header1\n sequence\n header2\n line4
+		if args PHRED64input:
+			if args PHRED33out
+				print(header1\n sequence\n header2\n PHRED64To33() qualityScoreCalc)
+			elif args P64Bin:
+				print header1\n sequence\n header2\n PHRED64To33() qualityScoreCalc
+			elif args P64SOLin:
+				print header1\n sequence\n header2\n PHRED64To33() qualityScoreCalc
+			elif args P64out:
+				print header1\n sequence\n header2\n line4
+			
+
+
+	
+
+class FastQreader: # might have to make this as a new class?
+'''Define objects to read FASTQ files.(Maybe make like FastAreader? So similar steps)'''
+	def __init__ (self, fname=''):
+	'''constructor: save attribute frame'''
+	self.fname = fname
+
+	def doOpen (self):
+	'''Handle file opens, allowing STDIN'''
+	if self.fname is '':
+		return sys.stdin
+	else:
+		return open(self.fname)
+
+	def readFastq :
+		
+		with self.doOpen() as fileQ:
+		
+			header1 = ''
+			sequence = ''
+			header2 = ''
+			line4 = '' # quality line
+			
+			line = fileQ.readline()
+			while not line.startswith('@') or while not line.startswith('+'):
+				line = fileQ.readline()
+			header = line [1:].rstrip()
+			line4 = line[1:].rstrip()
+
+			for line in fileQ:
+				If line.startswith ('@'):
+					yield header1, sequence
+				If line.startswith ('+'):
+					yield header2, line4
+
+		yield header, sequence, header2, line4
